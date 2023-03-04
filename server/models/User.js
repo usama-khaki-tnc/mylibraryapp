@@ -19,5 +19,20 @@ const userModel = new Schema({
     required: true,
     default: false
   },
-  borrowed: [bookModel]
-})
+  borrowed: [bookModel],
+  searchHistory: [String],
+},
+{
+  toJSON: {
+    virtuals: true,
+  }
+}
+)
+
+userModel.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
+
+const User = model('User', userModel);
+
+module.exports = User;
