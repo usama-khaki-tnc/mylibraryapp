@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose')
 const bcrypt = require('bcrypt');
 
-const bookModel = require('./Book');
+const bookModel = require('./Book').schema;
 
 const userModel = new Schema({
   email: {
@@ -29,10 +29,11 @@ const userModel = new Schema({
 }
 )
 
+/*
 userModel.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
-
+*/
 const User = model('User', userModel);
 
 module.exports = User;
