@@ -1,9 +1,18 @@
 const User = require('../models/User');
 const Book = require('../models/Book');
 
-getAllBooks = (req, res) => {
-  
-  return res.status(200).json({ success: true, data: "getAllBooks" })
+getAllBooks = async (req, res) => {
+  await Book.find({}, (err, books) => {
+    if (err) {
+      return res.status(400).json({ success: false, error: err })
+    }
+    if (!books) {
+      return res
+          .status(404)
+          .json({ success: false, error: `Books not found!!` })
+    }
+    return res.status(200).json({ success: true, data: books })
+  }).clone().catch(err => console.log(err))
 }
 
 getBookById = (req, res) => {

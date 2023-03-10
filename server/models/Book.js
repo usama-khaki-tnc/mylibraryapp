@@ -26,7 +26,7 @@ const bookModel = new Schema({
   },
 
   publishedDate: {
-    type: String
+    type: Date
   },
 
   price: {
