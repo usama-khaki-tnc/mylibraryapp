@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose')
 const bcrypt = require('bcrypt');
 
 const bookModel = require('./Book').schema;
+const borrowModel = require('./Borrow').schema;
 
 const userModel = new Schema({
   email: {
@@ -19,7 +20,7 @@ const userModel = new Schema({
     required: true,
     default: false
   },
-  borrowed: [bookModel],
+  borrowed: [borrowModel],
   searchHistory: [String],
 },
 {
