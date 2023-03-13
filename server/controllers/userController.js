@@ -1,6 +1,8 @@
 const User = require('../models/User');
 const Book = require('../models/Book');
 
+const {authMiddleware, signInToken} = require('../utils/auth')
+
 register = (req, res) => {
   const body = req.body
 
@@ -19,12 +21,15 @@ register = (req, res) => {
 
   user
     .save()
-    .then(() => {
-        return res.status(201).json({
-            success: true,
-            id: user._id,
-            message: 'User created!',
-        })
+    .then((userData) => {
+      
+      const id = userData._id.valueOf()
+      const token = signInToken(user.email, id)
+      return res.status(201).json({
+          success: true,
+          token: token,
+          message: 'User created!',
+      })
     })
     .catch(error => {
         return res.status(400).json({
@@ -43,17 +48,29 @@ login = async (req, res) => {
     })
   }
 
-  const correctPw = await user.isCorrectPassword(body.password);
+  User.findOne({email: body.email}, async (err, user) => {
+    if (err) {
+      return res.status(404).json({
+          err,
+          message: 'User not found!',
+      })
+    }
 
-  if (!correctPw) {
-    return res.status(403).json({
-      success: false,
-      error: 'Incorrect password',
-    })
-  }
-
-  return res.status(200).json({ success: true, data: "survey" })
-
+    const correctPw = await user.isCorrectPassword(body.password);
+    if (!correctPw) {
+      return res.status(403).json({
+        success: false,
+        error: 'Incorrect password',
+      })
+    }
+    else {
+      const token = signInToken(user.email, user._id.valueOf())
+      return res.status(201).json({
+        success: true,
+        token: token
+      })
+    }
+  })
 }
 
 getUserById = (req, res) => {
