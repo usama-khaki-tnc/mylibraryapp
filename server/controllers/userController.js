@@ -13,6 +13,13 @@ register = (req, res) => {
     })
   }
 
+  if (body.email === "" || body.password === "") {
+    return res.status(400).json({
+        success: false,
+        error: 'Missing user data!!',
+    })
+  }
+
   const user = new User(body);
 
   if (!user) {
@@ -45,6 +52,13 @@ login = async (req, res) => {
     return res.status(400).json({
         success: false,
         error: 'No user data provided',
+    })
+  }
+
+  if (body.email === "" || body.password === "") {
+    return res.status(400).json({
+        success: false,
+        error: 'Missing user data!!',
     })
   }
 
