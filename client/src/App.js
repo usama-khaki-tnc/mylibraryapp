@@ -14,7 +14,7 @@ import Register from './pages/Register'
 
 function App(props) {
 
-  const [searchText, setSearchText] = useState("Best Seller");
+  const [searchText, setSearchText] = useState("bestseller");
 
   return (
     <div className="App">

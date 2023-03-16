@@ -11,7 +11,7 @@ export const reducer = (state = initialState, action) => {
     case ALL_BOOKS:
       return {
         ...state,
-        allbooks: [...state.allbooks, ...action.allbooks]
+        allbooks: [...action.allbooks]
       }
 
     default: 

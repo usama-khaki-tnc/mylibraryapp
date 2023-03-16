@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {ALL_BOOKS} from "../utils/action"
 
 import Hero from "../components/Hero";
+import ShowResults from "../components/ShowResults";
+import gBookSearch from '../utils/bookSearch';
 
 export default function Home({
   searchText, setSearchText
@@ -12,7 +14,14 @@ export default function Home({
   const [bookSearched, setBookSearched] = useState([]);
 
   const [searchHistory, setSearchHistory] = useState([]);
-  
+
+  useEffect(() => {
+    gBookSearch.googleSearchHandler(searchText).then(data => {
+      setBookSearched(data);
+    });
+    console.log(searchText, bookSearched)
+  }, []);
+ 
   useEffect(() => {
     if(bookSearched && bookSearched.length > 0) {
       dispatch({
@@ -20,7 +29,7 @@ export default function Home({
         allbooks: bookSearched
       });
     }
-    console.log(bookSearched)
+    //console.log(searchText, bookSearched)
   }, [bookSearched]);
 
   return (
@@ -33,7 +42,8 @@ export default function Home({
         searchText = {searchText}
         setSearchText = {setSearchText}
       />
-      <div>HOME</div>
+      <div className="mx-auto mb-3 m-lg-2 searchTitle d-flex justify-content-center">Results for - {searchText}</div>
+      <ShowResults/>
     </div>
   )
 }

@@ -55,7 +55,7 @@ const googleSearchHandler = async (txt, type) => {
         publisher: book.volumeInfo.publisher || ''
         }
     });
-    console.log(gBooks)
+
     return gBooks;
     }
   } catch (e) {
