@@ -37,3 +37,28 @@ header a {
   font-size: 20px;
   margin: 0 10px;
 }
+
+.hero-img {
+  min-height: 400px;
+  background-position: center;
+  background-size: cover;
+}
+
+.impForm {
+  min-width: 18vw;
+}
+
+.book-desc {
+  overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+
+.searchTitle {
+  text-transform: capitalize;
+  font-size: 26px;
+  font-weight: bold;
+  justify-content: center;
+}
