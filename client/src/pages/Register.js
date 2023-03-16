@@ -28,8 +28,8 @@ export default function Register() {
 
   return (
     <div className="body-container d-flex flex-column justify-content-center">
-      <h1 className="text-center">Sign up</h1>
-      <div className="auth-container">
+      <h2 class="display-4 mt-3 mb-5 text-center">Sign Up</h2>
+      <div className="auth-container d-flex flex-column container">
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger' className="alert-button">
           Missing or incorrect information! Please try again.
         </Alert>
@@ -47,7 +47,7 @@ export default function Register() {
             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
             <label className="form-check-label" htmlFor="exampleCheck1">Sign up for free offers</label>
           </div>
-          <button type="submit" className="btn btn-theme">Signup</button>
+          <button type="submit" className="btn btn-primary">Signup</button>
           <div className="mt-2">
             <a href="/login">Login instead</a>
           </div>

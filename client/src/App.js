@@ -11,6 +11,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import Login from './pages/Login'
 import Register from './pages/Register'
+import CreateBook from './pages/CreateBook';
 
 function App(props) {
 
@@ -31,6 +32,7 @@ function App(props) {
             /> }> </Route>
             <Route path= "/login" element = { <Login/> }> </Route>
             <Route path= "/register" element = { <Register/> }> </Route>
+            <Route path= "/createBook" element = { <CreateBook/> }> </Route>
           </Routes>
         </Provider>
       </Router>
