@@ -35,8 +35,8 @@ export default function Login() {
 
   return (
     <div className="body-container d-flex flex-column justify-content-center">
-      <h1 className="text-center">Login</h1>
-      <div className="auth-container d-flex flex-column">
+      <h2 class="display-4 mt-3 mb-5 text-center">Login</h2>
+      <div className="auth-container d-flex flex-column container-sm">
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger' className="alert-button">
           Password or email is incorrect! Please try again.
         </Alert>
@@ -54,7 +54,7 @@ export default function Login() {
             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
             <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
           </div>
-          <button type="submit" className="btn btn-theme">Login</button>
+          <button type="submit" className="btn btn-primary">Login</button>
           <div className="mt-2">
             <a href="/register">Sign up instead</a>
           </div>
