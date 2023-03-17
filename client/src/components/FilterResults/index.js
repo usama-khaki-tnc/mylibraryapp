@@ -4,7 +4,6 @@ import BookCard from '../BookCard';
 
 export default function ShowResults() {
   const state = useSelector(state => state);
-  console.log(state)
   return (
     <div className="container">
       <h1 className="text-center mx-4 my-5">{}</h1>

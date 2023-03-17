@@ -17,6 +17,7 @@ export default function Hero({
       setSearchText(query);
       setSearchHistory(...searchHistory, query)
       const data = await gBookSearch.googleSearchHandler(query);
+      console.log(data)
       if(data) {
         setBookSearched(data)
       } else {

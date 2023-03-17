@@ -14,9 +14,15 @@ const bookModel = new Schema({
 
   isbn: {
     type: String,
+    unique: true
   },
 
   genre: 
+  {
+    type: String
+  },
+
+  description: 
   {
     type: String
   },
@@ -26,7 +32,7 @@ const bookModel = new Schema({
   },
 
   publishedDate: {
-    type: Date
+    type: String
   },
 
   price: {

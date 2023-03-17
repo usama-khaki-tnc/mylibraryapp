@@ -4,18 +4,18 @@ import Auth from '../utils/auth';
 import api from '../api/index';
 
 export default function Register() {
-  const [ formState, setFormState ] = useState({email: '', password: '' });
+  const [ formState, setFormState ] = useState({username: '', email: '', password: '' });
   const [showAlert, setShowAlert] = useState(false);
   
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await api.register({
-        email: formState.email, password: formState.password
+        username: formState.username, email: formState.email, password: formState.password
       });
       const token = response.data.token;
       Auth.login(token);
-      setFormState({email: '', password: '' });
+      setFormState({username: '', email: '', password: '' });
     } catch (e) {
       console.error(e);
     }
@@ -35,9 +35,12 @@ export default function Register() {
         </Alert>
         <form onSubmit={handleSubmit} id="login-form">
           <div className="mb-3">
+            <label htmlFor="username" className="form-label">Username</label>
+            <input onChange={handleChange} name="username" className="form-control" id="username" aria-describedby="emailHelp" value={formState.username} />
+          </div>
+          <div className="mb-3">
             <label htmlFor="email" className="form-label">Email address</label>
             <input onChange={handleChange} name="email" className="form-control" type="email" id="email" aria-describedby="emailHelp" value={formState.email} />
-            <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
           </div>
           <div className="mb-3">
             <label htmlFor="password" className="form-label">Password</label>
@@ -48,8 +51,8 @@ export default function Register() {
             <label className="form-check-label" htmlFor="exampleCheck1">Sign up for free offers</label>
           </div>
           <button type="submit" className="btn btn-primary">Signup</button>
-          <div className="mt-2">
-            <a href="/login">Login instead</a>
+          <div className="my-3">
+          <span>Already have an account? </span><a href="/login">Login</a>
           </div>
         </form>
       </div>

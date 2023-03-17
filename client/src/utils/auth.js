@@ -20,6 +20,25 @@ class Auth {
       return false;
     }
   }
+
+  loggedIn() {
+    const token = this.getToken();
+    return !!token && !this.isTokenExpired(token);
+  }
+
+  logout() {
+    localStorage.removeItem('id_token');
+    window.location.assign('/');
+  }
+
+  getToken() {
+    // Retrieves the user token from localStorage
+    return localStorage.getItem('id_token');
+  }
+
+  getProfile() {
+    return decode(this.getToken());
+  }
 }
 
 export default new Auth();
