@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom"; 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 // import reduxStore
 import { Provider } from 'react-redux';
@@ -16,7 +16,6 @@ import CreateBook from './pages/CreateBook';
 function App(props) {
 
   const [searchText, setSearchText] = useState("bestseller");
-
   return (
     <div className="App">
       <Header/>

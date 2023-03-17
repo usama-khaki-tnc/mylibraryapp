@@ -13,7 +13,7 @@ register = (req, res) => {
     })
   }
 
-  if (body.email === "" || body.password === "") {
+  if (body.username === "" || body.email === "" || body.password === "") {
     return res.status(400).json({
         success: false,
         error: 'Missing user data!!',
@@ -31,7 +31,7 @@ register = (req, res) => {
     .then((userData) => {
       
       const id = userData._id.valueOf()
-      const token = signInToken(user.email, id)
+      const token = signInToken(user.username, user.email, id)
       return res.status(201).json({
           success: true,
           token: token,
@@ -78,7 +78,7 @@ login = async (req, res) => {
       })
     }
     else {
-      const token = signInToken(user.email, user._id.valueOf())
+      const token = signInToken(user.username, user.email, user._id.valueOf())
       return res.status(201).json({
         success: true,
         token: token

@@ -36,15 +36,17 @@ const googleSearchHandler = async (txt, type) => {
       if(book.volumeInfo.industryIdentifiers) {
         isbnObj = checkIsbn(book.volumeInfo.industryIdentifiers);
       }
+
+      console.log(book)
       
       return {
-        bookId: book.id,
-        authors: book.volumeInfo.authors || [],
+        bookId: isbnObj.isbn13,
+        author: book.volumeInfo.authors? book.volumeInfo.authors[0] : '',
         title: book.volumeInfo.title || 'No Title Available',
         description: book.volumeInfo.description || '',
-        categories: book.volumeInfo?.categories || [],
+        genre: book.volumeInfo? book.volumeInfo.categories ? book.volumeInfo.categories[0] : "" : "",
         image: book.volumeInfo.imageLinks?.thumbnail || '',
-        isbn13: isbnObj.isbn13,
+        isbn: isbnObj.isbn13,
         isbn10: isbnObj.isbn10,
         webReaderLink: book.accessInfo?.webReaderLink || '',
         googleListPrice: book.saleInfo.listPrice?.amount.toString() || '',

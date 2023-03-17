@@ -2,6 +2,11 @@ import React from "react";
 
 export default function BookCard({book, key}) {
 
+  const bookHandler = async (e) => {
+    e.preventDefault();
+
+  }
+
   return (
     <div
     className="book-card card mx-auto mb-3 m-lg-2"

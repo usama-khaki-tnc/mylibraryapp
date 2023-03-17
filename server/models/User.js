@@ -5,6 +5,10 @@ const bookModel = require('./Book').schema;
 const borrowModel = require('./Borrow').schema;
 
 const userModel = new Schema({
+  username: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,

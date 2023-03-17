@@ -1,9 +1,11 @@
 import {
-  ALL_BOOKS
+  ALL_BOOKS,
+  DB_BOOKS
 } from './action';
 
 const initialState = { 
-  allbooks: []
+  allbooks: [],
+  dbbooks: []
 }
 
 export const reducer = (state = initialState, action) => {
@@ -13,7 +15,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         allbooks: [...action.allbooks]
       }
-
+    case DB_BOOKS:
+      return {
+        ...state,
+        dbbooks: [...action.dbbooks]
+      }
     default: 
       return state;
   }

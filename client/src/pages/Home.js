@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import sb from "../utils/bookSearch";
 import { useSelector, useDispatch } from "react-redux";
-import {ALL_BOOKS} from "../utils/action"
+import {ALL_BOOKS, DB_BOOKS} from "../utils/action"
 
 import Hero from "../components/Hero";
 import ShowResults from "../components/ShowResults";
 import gBookSearch from '../utils/bookSearch';
+import api from "../api/index"
 
 export default function Home({
   searchText, setSearchText
@@ -19,7 +20,18 @@ export default function Home({
     gBookSearch.googleSearchHandler(searchText).then(data => {
       setBookSearched(data);
     });
-    console.log(searchText, bookSearched)
+
+    api.getAllBooks().then((data) => {
+      console.log(data.data.data)
+      if(data.data.data && data.data.data.length > 0) {
+        dispatch({
+          type: DB_BOOKS,
+          dbbooks: data.data.data
+        });
+      }
+    })
+
+    console.log(bookSearched)
   }, []);
  
   useEffect(() => {
