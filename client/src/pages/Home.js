@@ -9,10 +9,13 @@ import gBookSearch from '../utils/bookSearch';
 import api from "../api/index"
 
 export default function Home({
-  searchText, setSearchText
+  searchText, setSearchText, bookSearched, setBookSearched
 }) {
+
+  const state = useSelector(state => state);
+
   const dispatch = useDispatch();
-  const [bookSearched, setBookSearched] = useState([]);
+  //const [bookSearched, setBookSearched] = useState([]);
 
   const [searchHistory, setSearchHistory] = useState([]);
 
@@ -33,7 +36,7 @@ export default function Home({
       }
     })
 
-    console.log(bookSearched)
+    console.log(state)
   }, []);
  
   useEffect(() => {
@@ -43,6 +46,7 @@ export default function Home({
         allbooks: bookSearched
       });
     }
+    console.log(state)
     //console.log(searchText, bookSearched)
   }, [bookSearched]);
 

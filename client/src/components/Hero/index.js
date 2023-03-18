@@ -14,11 +14,11 @@ export default function Hero({
   const searchSubmit = async (e) => {
     e.preventDefault();
     const query = e.target[0].value;
+    e.target[0].value = "";
     if(query || query.length > 0) {
       setSearchText(query);
       setSearchHistory(...searchHistory, query)
       const data = await gBookSearch.googleSearchHandler(query);
-      console.log(data)
       if(data) {
         setBookSearched(data)
       } else {
@@ -27,7 +27,7 @@ export default function Hero({
     
   }
   }
-  console.log(auth.getProfile())
+
   return(
     <div className="d-flex justify-content-center align-items-center hero-img" style={{backgroundImage: `url(${bgImg})`}}>
       <div className="search-container d-flex justify-content-center flex-column p-2 p-lg-4">

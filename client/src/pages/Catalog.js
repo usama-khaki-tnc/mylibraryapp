@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import FilterBar from "../components/FilterBar";
 import FilterResults from "../components/FilterResults";
 
-import gBookSearch from '../utils/bookSearch';
 import api from "../api/index"
-import { useSelector, useDispatch } from "react-redux";
-import {ALL_BOOKS, DB_BOOKS} from "../utils/action"
+import { useDispatch } from "react-redux";
+import {DB_BOOKS} from "../utils/action"
 
 
 export default function Catalog({}) {

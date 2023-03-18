@@ -37,7 +37,6 @@ const googleSearchHandler = async (txt, type) => {
         isbnObj = checkIsbn(book.volumeInfo.industryIdentifiers);
       }
 
-      //console.log(book)
       
       return {
         bookId: book.id,
@@ -58,12 +57,61 @@ const googleSearchHandler = async (txt, type) => {
         }
     });
 
+    localStorage.setItem("books", JSON.stringify(gBooks));
     return gBooks;
     }
   } catch (e) {
     console.error(e);
   }
 }; 
+
+// fetch currectBook Details
+export const bookSelected = async (bookId) => {
+  if(!bookId) {
+    alert('book ID is invalid');
+  }
+  // get results form google api
+  try {
+    const gResponse = await(getSelectedBook(bookId));
+
+    if(!gResponse.ok) {
+      throw new Error('Something went wrong!');
+    }
+
+    const book = await gResponse.json();
+
+    let isbnObj = {
+      isbn13: '',
+      isbn10: ''
+    };
+
+    if(book.volumeInfo.industryIdentifiers) {
+      isbnObj = checkIsbn(book.volumeInfo.industryIdentifiers);
+    }
+
+      const gBookData =  {
+        bookId: book.id,
+        author: book.volumeInfo.authors? book.volumeInfo.authors[0] : '',
+        title: book.volumeInfo.title || 'No Title Available',
+        description: book.volumeInfo.description || '',
+        genre: book.volumeInfo? book.volumeInfo.categories ? book.volumeInfo.categories[0] : "" : "",
+        image: book.volumeInfo.imageLinks?.thumbnail || '',
+        isbn: isbnObj.isbn13,
+        isbn10: isbnObj.isbn10,
+        webReaderLink: book.accessInfo?.webReaderLink || '',
+        googleListPrice: book.saleInfo.listPrice?.amount.toString() || '',
+        googleRetailPrice: book.saleInfo.retailPrice?.amount.toString() || '',
+        googlePlayBooks: book.volumeInfo?.infoLink || '',
+        googleRatings: book.volumeInfo?.averageRating || 0,
+        publishedDate: book.volumeInfo.publishedDate || '',
+        publisher: book.volumeInfo.publisher || ''
+        }
+
+    return gBookData;
+  } catch (e) {
+    console.error(e);
+  }
+}
 
 const checkIsbn = (isbnList) => {
   const isbnObj = {
