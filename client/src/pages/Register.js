@@ -18,7 +18,9 @@ export default function Register() {
       setFormState({username: '', email: '', password: '' });
     } catch (e) {
       console.error(e);
+      setShowAlert(true)
     }
+    console.log(formState)
   }
 
   const handleChange = (e) => {
@@ -28,7 +30,7 @@ export default function Register() {
 
   return (
     <div className="body-container d-flex flex-column justify-content-center">
-      <h2 class="display-4 mt-3 mb-5 text-center">Sign Up</h2>
+      <h2 className="display-4 mt-3 mb-5 text-center">Register</h2>
       <div className="auth-container d-flex flex-column container">
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger' className="alert-button">
           Missing or incorrect information! Please try again.
@@ -50,7 +52,7 @@ export default function Register() {
             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
             <label className="form-check-label" htmlFor="exampleCheck1">Sign up for free offers</label>
           </div>
-          <button type="submit" className="btn btn-primary">Signup</button>
+          <button type="submit" className="btn btn-primary">Register</button>
           <div className="my-3">
           <span>Already have an account? </span><a href="/login">Login</a>
           </div>

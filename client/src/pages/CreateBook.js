@@ -17,7 +17,7 @@ export default function CreateBook() {
         publishedDate: formState.publishedDate, price: formState.price
       });
       setFormState({title: '', author: '', isbn: '', genre: '', description: '', image: '', publishedDate: '', price: '' });
-      navigate('/browse');
+      navigate('/catalog');
     } catch (e) {
       console.error(e);
     }

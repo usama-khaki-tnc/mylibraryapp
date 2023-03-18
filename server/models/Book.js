@@ -14,7 +14,6 @@ const bookModel = new Schema({
 
   isbn: {
     type: String,
-    unique: true
   },
 
   genre: 

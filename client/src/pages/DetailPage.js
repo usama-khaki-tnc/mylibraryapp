@@ -15,8 +15,6 @@ export default function DetailPage() {
   const [dbData, setDbData] = useState(false);
   const [err, setErr] = useState(false);
 
-  console.log(isbn)
-
   useEffect(() => {
     const gBooks = JSON.parse(localStorage.getItem("books") || "[]");
     setErr(false)

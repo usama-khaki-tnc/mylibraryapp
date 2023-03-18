@@ -46,7 +46,7 @@ export default function Home({
         allbooks: bookSearched
       });
     }
-    console.log(state)
+    console.log(bookSearched)
     //console.log(searchText, bookSearched)
   }, [bookSearched]);
 
