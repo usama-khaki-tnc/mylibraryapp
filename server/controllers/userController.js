@@ -19,9 +19,9 @@ register = (req, res) => {
         error: 'Missing user data!!',
     })
   }
-
+ 
   const user = new User(body);
-
+  console.log(user)
   if (!user) {
     return res.status(400).json({ success: false, error: err })
   }
@@ -29,9 +29,9 @@ register = (req, res) => {
   user
     .save()
     .then((userData) => {
-      
+      console.log(userData)
       const id = userData._id.valueOf()
-      const token = signInToken(user.username, user.email, id)
+      const token = signInToken(userData.username, userData.email, id)
       return res.status(201).json({
           success: true,
           token: token,
@@ -39,6 +39,7 @@ register = (req, res) => {
       })
     })
     .catch(error => {
+        console.log(error)
         return res.status(400).json({
             success: false,
             error: 'User not created!',
