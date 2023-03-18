@@ -11,7 +11,6 @@ const router = express.Router()
 
 router.get('/', getAllBooks)
 router.get('/:id', getBookById)
-router.get('/:isbn', getBookByIsbn)
 router.get('/search', getBookSearch)
 router.put('/:id', editBookByID)
 router.delete('/:id', deleteBook)
