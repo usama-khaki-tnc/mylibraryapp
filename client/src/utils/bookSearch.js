@@ -37,10 +37,10 @@ const googleSearchHandler = async (txt, type) => {
         isbnObj = checkIsbn(book.volumeInfo.industryIdentifiers);
       }
 
-      console.log(book)
+      //console.log(book)
       
       return {
-        bookId: isbnObj.isbn13,
+        bookId: book.id,
         author: book.volumeInfo.authors? book.volumeInfo.authors[0] : '',
         title: book.volumeInfo.title || 'No Title Available',
         description: book.volumeInfo.description || '',

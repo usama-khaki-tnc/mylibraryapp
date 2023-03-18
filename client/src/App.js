@@ -12,10 +12,11 @@ import Home from './pages/Home';
 import Login from './pages/Login'
 import Register from './pages/Register'
 import CreateBook from './pages/CreateBook';
+import Catalog from './pages/Catalog';
 
 function App(props) {
 
-  const [searchText, setSearchText] = useState("bestseller");
+  const [searchText, setSearchText] = useState("Bestseller");
   return (
     <div className="App">
       <Header/>
@@ -32,6 +33,7 @@ function App(props) {
             <Route path= "/login" element = { <Login/> }> </Route>
             <Route path= "/register" element = { <Register/> }> </Route>
             <Route path= "/createBook" element = { <CreateBook/> }> </Route>
+            <Route path= "/catalog" element = { <Catalog/> }> </Route>
           </Routes>
         </Provider>
       </Router>

@@ -3,6 +3,7 @@ import bgImg from '../../assets/img/libimg.jpg'
 import api from '../../api/index'
 import gBookSearch from '../../utils/bookSearch'
 import { Alert } from 'react-bootstrap';
+import auth from "../../utils/auth";
 
 export default function Hero({
     bookSearched, setBookSearched, searchHistory, setSearchHistory, searchText, setSearchText
@@ -26,11 +27,13 @@ export default function Hero({
     
   }
   }
-
+  console.log(auth.getProfile())
   return(
     <div className="d-flex justify-content-center align-items-center hero-img" style={{backgroundImage: `url(${bgImg})`}}>
       <div className="search-container d-flex justify-content-center flex-column p-2 p-lg-4">
-        <form className="d-flex p-md-3 p-lg-0" onSubmit={searchSubmit}>
+        <p className="highText">Search library database for availability</p>
+        <form className="d-flex p-md-3 p-lg-0 " onSubmit={searchSubmit}>
+
           <div className="input-container d-flex">
             <input 
               className="form-control mr-sm-2 impForm" 

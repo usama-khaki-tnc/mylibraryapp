@@ -42,6 +42,7 @@ header a {
   min-height: 400px;
   background-position: center;
   background-size: cover;
+  position: relative;
 }
 
 .impForm {
@@ -61,4 +62,22 @@ header a {
   font-size: 26px;
   font-weight: bold;
   justify-content: center;
+}
+
+.highText {
+  color: aliceblue;
+  background-color: rgba(0, 0, 0, 0.664);
+  padding: 1px 10px;
+  text-align: center;
+  border-radius: 50px;
+}
+
+.heroText {
+  position: absolute;
+  top: 5%;
+  left: 85%;
+}
+
+.book-title {
+  text-align: center;
 }
