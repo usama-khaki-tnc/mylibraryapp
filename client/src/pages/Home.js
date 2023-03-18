@@ -9,20 +9,25 @@ import gBookSearch from '../utils/bookSearch';
 import api from "../api/index"
 
 export default function Home({
-  searchText, setSearchText
+  searchText, setSearchText, bookSearched, setBookSearched
 }) {
+
+  const state = useSelector(state => state);
+
   const dispatch = useDispatch();
-  const [bookSearched, setBookSearched] = useState([]);
+  //const [bookSearched, setBookSearched] = useState([]);
 
   const [searchHistory, setSearchHistory] = useState([]);
 
   useEffect(() => {
-    gBookSearch.googleSearchHandler(searchText).then(data => {
-      setBookSearched(data);
-    });
+    if(searchText !== "") {
+      gBookSearch.googleSearchHandler(searchText).then(data => {
+        setBookSearched(data);
+      });
+    }
 
     api.getAllBooks().then((data) => {
-      console.log(data.data.data)
+      console.log(data.data.data.length)
       if(data.data.data && data.data.data.length > 0) {
         dispatch({
           type: DB_BOOKS,
@@ -31,7 +36,7 @@ export default function Home({
       }
     })
 
-    console.log(bookSearched)
+    console.log(state)
   }, []);
  
   useEffect(() => {
@@ -41,6 +46,7 @@ export default function Home({
         allbooks: bookSearched
       });
     }
+    console.log(state)
     //console.log(searchText, bookSearched)
   }, [bookSearched]);
 
@@ -54,7 +60,13 @@ export default function Home({
         searchText = {searchText}
         setSearchText = {setSearchText}
       />
-      <div className="mx-auto mb-3 m-lg-2 searchTitle d-flex justify-content-center">Results for - {searchText}</div>
+      {
+        searchText === "Bestseller" ?
+        <div className="mx-auto mb-3 m-lg-2 searchTitle d-flex justify-content-center">Bestseller books</div>
+        :
+        <div className="mx-auto mb-3 m-lg-2 searchTitle d-flex justify-content-center">Results for - {searchText}</div>
+      }
+
       <ShowResults/>
     </div>
   )
