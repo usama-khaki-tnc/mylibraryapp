@@ -1,13 +1,19 @@
-const express = require('express')
+const router = require("express").Router();
+const {
+  getUserController,
+  getAllUsersController,
+  updateUserController,
+} = require("../controllers/userController");
+const checkAuth = require("../middlewares/authMiddleware");
+const checkAdminAuth = require("../middlewares/adminAuthMiddleware");
 
-const { register, login, getUserById, editUser, getAllUsers } = require('../controllers/userController');
+// get all users
+router.get("/", checkAdminAuth, getAllUsersController);
 
-const router = express.Router()
+// get single user
+router.get("/single-user", checkAuth, getUserController);
 
-router.post('/register', register)
-router.post('/login', login)
-router.get('/:id', getUserById)
-router.put('/:id', editUser)
-router.get('/', getAllUsers)
+// update user
+router.patch("/", checkAuth, updateUserController);
 
-module.exports = router
+module.exports = router;
