@@ -39,7 +39,7 @@ const Cart = () => {
                                 <a href="#">
                                   <img
                                     className="w-[80px] h-[100px] object-cover object-center mx-auto"
-                                    src={`${process.env.REACT_APP_SERVER_URL}${cart?.items[key]?.item?.bookImage}`}
+                                    src={`${cart?.items[key]?.item?.bookImage}`}
                                     alt="man"
                                   />
                                 </a>
