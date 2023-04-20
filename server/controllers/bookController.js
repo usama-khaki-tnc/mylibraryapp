@@ -1,120 +1,138 @@
-const User = require('../models/User');
-const Book = require('../models/Book');
+const Book = require("../models/Book");
+const Jimp = require("jimp");
+const path = require("path");
 
-getAllBooks = async (req, res) => {
-  await Book.find({}, (err, books) => {
-    if (err) {
-      return res.status(400).json({ success: false, error: err })
-    }
-    if (!books) {
-      return res
-          .status(404)
-          .json({ success: false, error: `Books not found!!` })
-    }
-    return res.status(200).json({ success: true, data: books })
-  }).clone().catch(err => console.log(err))
-}
+const getAllBooksController = async (req, res) => {
+	try {
+		const { category, keyword } = req.query || {};
+		let findQuery = {};
+		if (category) {
+			findQuery = { category };
+		}
+		if (keyword) {
+			findQuery = {
+				...findQuery,
+				title: {
+					$regex: keyword,
+					$options: "i",
+				},
+			};
+		}
+		const books = await Book.find(findQuery).sort({ updatedAt: -1 });
+		res.status(200).json(books);
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({
+			error: "Server error occurred",
+		});
+	}
+};
 
-getBookById = async (req, res) => {
-  const body = req.body
+// get book controller
+const getBookController = async (req, res) => {
+	try {
+		const { id } = req.params || {};
 
-  if (!body) {
-      return res.status(400).json({
-          success: false,
-          error: 'Student data not found',
-      })
-  }
+		const book = await Book.findById(id);
+		res.status(200).json(book);
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({
+			error: "Server error occurred",
+		});
+	}
+};
 
-  await Book.findOne({_id: body.id}, (err, book) => {
-    if (err) {
-      return res.status(404).json({
-          err,
-          message: 'Book not found!',
-      })
-    }
-    if (!book) {
-      return res
-          .status(404)
-          .json({ success: false, error: `Books not found!!` })
-    }
-    return res.status(200).json({ success: true, data: book })
-  })
-}
+// create new Book controller
+const createNewBookController = async (req, res) => {
+	try {
+		const { title, price, stock, bookImage, category, description, featured } =
+			req.body || {};
 
-getBookSearch = async (req, res) => {
-  const body = req.body
-  await Book.find({title : { $regex: body.search, $options: "i" }}, (err, books) => {
-    if (err) {
-      return res.status(400).json({ success: false, error: err })
-    }
-    if (!books) {
-      return res
-          .status(404)
-          .json({ success: false, error: `Books not found!!` })
-    }
-    return res.status(200).json({ success: true, data: books })
-  }).clone().catch(err => console.log(err))
-}
+		// upload book image
+		let imagePath;
 
-editBookByID = (req, res) => {
-  
-  return res.status(200).json({ success: true, data: "editBookByID" })
-}
+		if (bookImage) {
+			// upload image
+			const buffer = Buffer.from(
+				bookImage?.replace(/^data:image\/(png|jpg|jpeg|webp);base64,/, ""),
+				"base64"
+			);
 
-deleteBook = async (req, res) => {
-  await Book.findOneAndDelete({ _id: req.params.id }, (err, book) => {
-    if (err) {
-        return res.status(400).json({ success: false, error: err })
-    }
+			imagePath = `${Date.now()}-${Math.round(Math.random() * 1e9)}.png`;
 
-    if (!book) {
-        return res
-            .status(404)
-            .json({ success: false, error: `Book not found` })
-    }
+			try {
+				const jimpResp = await Jimp.read(buffer);
+				jimpResp.write(
+					path.resolve(__dirname, `../public/storage/books/${imagePath}`)
+				);
+			} catch (err) {
+				console.log(err);
+				return res.status(500).json({
+					error: "Could not process the image!!",
+				});
+			}
+		}
 
-    return res.status(200).json({ success: true, data: book })
-  }).catch(err => console.log(err))
-}
+		const newBook = new Book({
+			title,
+			price,
+			stock,
+			bookImage: `/storage/books/${imagePath}`,
+			category,
+			description,
+			featured,
+		});
+		await newBook.save();
+		res.status(200).json(newBook);
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({
+			error: "Server error occurred",
+		});
+	}
+};
 
-addBook = (req, res) => {
-  const body = req.body
+// delete Book controller
+const deleteBookController = async (req, res) => {
+	try {
+		const { id } = req.params || {};
 
-  if (!body) {
-    return res.status(400).json({
-        success: false,
-        error: 'No book data provided',
-    })
-  }
+		const deletedBook = await Book.findByIdAndDelete(id);
+		res.status(200).json(deletedBook);
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({
+			error: "Server error occurred",
+		});
+	}
+};
 
-  const book = new Book(body);
+// update Book controller
+const updateBookController = async (req, res) => {
+	try {
+		const { id } = req.params || {};
 
-  if (!book) {
-    return res.status(400).json({ success: false, error: err })
-  }
-
-  book
-    .save()
-    .then(() => {
-        return res.status(201).json({
-            success: true,
-            id: book._id,
-            message: 'Book created!',
-        })
-    })
-    .catch(error => {
-        return res.status(400).json({
-            success: false,
-            error: 'Book not created!',
-        })
-    })
-}
+		const updatedBook = await Book.findByIdAndUpdate(
+			id,
+			{
+				$set: req.body,
+			},
+			{ new: true }
+		);
+		res.status(200).json(updatedBook);
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({
+			error: "Server error occurred",
+		});
+	}
+};
 
 module.exports = {
-  getAllBooks,
-  getBookById,
-  getBookSearch,
-  editBookByID,
-  deleteBook,
-  addBook
-}
+	getAllBooksController,
+	getBookController,
+	createNewBookController,
+	deleteBookController,
+	updateBookController,
+};

@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
   res.json({ message: "welcome" });
 });
 
-// database connection 
+// database connection
 mongoose
   .connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,

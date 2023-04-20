@@ -1,55 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom"; 
-import React, {useState, useEffect} from 'react';
+import { userLoggedIn } from '@apis/auth/authSlice';
+import { addCartData } from '@apis/cart/cartSlice';
+import ScrollToTop from '@components/ScrollToTop/ScrollToTop';
+import AppRoutes from '@routes/routes';
+import { useDispatch } from 'react-redux';
+import { Toaster } from 'react-hot-toast';
 
-// import reduxStore
-import { Provider } from 'react-redux';
-import store from './utils/store';
+const App = () => {
+  const dispatch = useDispatch();
+  const localAuth = localStorage?.getItem('auth');
 
-import Header from './components/Header';
-import Home from './pages/Home';
-import Login from './pages/Login'
-import Register from './pages/Register'
-import CreateBook from './pages/CreateBook';
-import Catalog from './pages/Catalog';
-import DetailPage from './pages/DetailPage';
+  const cartData = localStorage?.getItem('cart');
 
-function App(props) {
+  if (cartData) {
+    const cart = JSON.parse(cartData);
+    if (cart?.totalQty) {
+      dispatch(addCartData(cart));
+    }
+  }
 
-  const [searchText, setSearchText] = useState("Bestseller");
-  const [bookSearched, setBookSearched] = useState([]);
+  if (localAuth) {
+    const auth = JSON.parse(localAuth);
+    if (auth?.accessToken && auth?.user) {
+      dispatch(userLoggedIn({ accessToken: auth.accessToken, user: auth.user }));
+    }
+  }
+
   return (
-    <div className="App">
-      <Header/>
-      <Router>
-        <Provider store={store}>
-
-        
-          <Routes>
-            <Route path= "/" element = { <Home
-              {...props}
-              searchText={searchText}
-              setSearchText = {setSearchText}
-              bookSearched = {bookSearched}
-              setBookSearched = {setBookSearched}
-            /> }> </Route>
-            <Route path= "/login" element = { <Login/> }> </Route>
-            <Route path= "/register" element = { <Register/> }> </Route>
-            <Route path= "/createBook" element = { <CreateBook/> }> </Route>
-            <Route path= "/catalog" element = { <Catalog/> }> </Route>
-            <Route path= "/books/:isbn" element = { <DetailPage
-              {...props}
-              searchText={searchText}
-              setSearchText = {setSearchText}
-              bookSearched = {bookSearched}
-              setBookSearched = {setBookSearched}
-            /> }> </Route>
-          </Routes>
-        </Provider>
-      </Router>
+    <div>
+      <ScrollToTop>
+        <AppRoutes />
+      </ScrollToTop>
+      <Toaster />
     </div>
   );
-}
+};
 
 export default App;
