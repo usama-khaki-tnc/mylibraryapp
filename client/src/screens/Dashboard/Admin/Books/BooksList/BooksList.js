@@ -28,7 +28,7 @@ const BooksList = () => {
                   <td>
                     <img
                       className="w-20 mx-auto"
-                      src={`${process.env.REACT_APP_SERVER_URL}${book?.bookImage}`}
+                      src={`${book?.bookImage}`}
                       alt="book"
                     />
                   </td>

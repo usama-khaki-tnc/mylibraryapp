@@ -7,8 +7,16 @@ export const bookApi = apiSlice.injectEndpoints({
         const { category, keyword } = params || {};
         let url = '/api/books';
         const query = new URLSearchParams();
-        if (category) query.append('category', category);
-        if (keyword) query.append('keyword', keyword);
+        if (category) {
+          query.append('category', category.toLowerCase());
+          query.append('category', category.toUpperCase());
+          query.append('category', category);
+        }
+        if (keyword) {
+          query.append('keyword', keyword.toLowerCase());
+          query.append('keyword', keyword.toUpperCase());
+          query.append('keyword', keyword);
+        }
         if (query.toString()) url += `?${query.toString()}`;
         return url;
       },
