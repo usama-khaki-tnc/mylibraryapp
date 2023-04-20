@@ -24,12 +24,16 @@ const Home = () => {
           </div>
           <div className="grid grid-cols-5 gap-4 mb-3">
             {books.map((item, index) => {
-              return <BookItem book={item} key={index} />;
+              //console.log(item.featured)
+              if (item.featured) {
+                return <BookItem book={item} key={index} />;
+              }
+              
             })}
           </div>
           {books.length > 10 && (
             <div className="text-center mb-5">
-              <button className="btn-theme-btn !px-14">View All</button>
+              <a href='/books'><button className="btn-theme-btn !px-14">View All</button></a>
             </div>
           )}
         </div>

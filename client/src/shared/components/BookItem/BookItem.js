@@ -1,7 +1,7 @@
 import { ROOT_PAGE_URL } from '@constants/navigator';
 import { Link } from 'react-router-dom';
 import useBookItem from './useBookItem';
-
+//${process.env.REACT_APP_SERVER_URL}
 const BookItem = ({ book, size = 'lg' }) => {
   const { handleAddToCard } = useBookItem(book);
 
@@ -10,7 +10,7 @@ const BookItem = ({ book, size = 'lg' }) => {
       <div className="product-img">
         <Link to={`${ROOT_PAGE_URL.BOOK_DETAIL}/${book._id}`}>
           <img
-            src={`${process.env.REACT_APP_SERVER_URL}${book?.bookImage}`}
+            src={`${book?.bookImage}`}
             alt="book"
             className="primary h-[284px] w-full object-cover object-center"
             style={{
