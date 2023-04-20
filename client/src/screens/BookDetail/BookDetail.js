@@ -11,7 +11,7 @@ const BookDetail = () => {
   if (!book) {
     return <div>Book not found</div>;
   }
-
+  //${process.env.REACT_APP_SERVER_URL}
   return (
     <>
       <Breadcrumb text={'Book Detail'} />
@@ -21,7 +21,7 @@ const BookDetail = () => {
             <div className="row">
               <div className="col-lg-5 col-md-6 col-12">
                 <img
-                  src={`${process.env.REACT_APP_SERVER_URL}${book.bookImage}`}
+                  src={`${book.bookImage}`}
                   className="h-[413px] w-[322px] object-cover object-center"
                   alt="woman"
                 />

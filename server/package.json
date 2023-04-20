@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "seed": "node db/seed.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
