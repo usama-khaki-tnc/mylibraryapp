@@ -71,7 +71,7 @@ module.exports = (link) => {
                   </div>
                   <br /><br />
                   Thanks,<br />
-                  The Website Team
+                  The MyLibrary Team
                 </td>
               </tr>
             </table>
@@ -90,7 +90,7 @@ module.exports = (link) => {
             >
               <tr>
                 <td style="text-align: center">
-                  This email was sent to you by our website. To unsubscribe, click
+                  This email was sent to you by MyLibrary. To unsubscribe, click
                   <a href="#" style="color: #777777">here</a>.
                 </td>
               </tr>

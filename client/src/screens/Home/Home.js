@@ -4,7 +4,6 @@ import useHome from './useHome';
 
 const Home = () => {
   const { books } = useHome();
-
   return (
     <>
       <div className="single-slider bg-img relative">

@@ -5,7 +5,6 @@ import useMyAccount from './useMyAccount';
 const MyAccount = () => {
   const { user } = useAuth()
   const {} = useMyAccount();
-
   return (
     <DashboardContentWrapper title={'Dashboard'}>
       <div className="welcome">

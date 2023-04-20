@@ -48,7 +48,7 @@ export const authApi = apiSlice.injectEndpoints({
         method: "PATCH",
       }),
     }),
-  }),
+   }),
 });
 
 export const {
