@@ -19,7 +19,7 @@ const bookSeeds = [
     category: "fiction",
     description: "A sturdy board-book edition of Dr. Seuss’s Hop on Pop, now available in a larger size perfect for babies and toddlers! This abridged version of the classic Beginner Book Hop on Pop introduces the youngest readers to the wonderful world of Seussian wordplay. See RED and NED and TED and ED in BED. And giggle as PAT sits on a HAT and a CAT and a BAT . . . and almost on a cactus! (NO PAT NO, don’t sit on that.) A perfect gift for baby showers, birthdays, and happy occasions of all kinds, it is also a great way to show Pop some love on Father’s Day!",
     bookImage: "http://books.google.com/books/content?id=_XeJDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-    featured: true,
+    featured: false,
     price: 22.56,
   
   },
@@ -120,7 +120,7 @@ const bookSeeds = [
     category: "Biography",
     description: "James Baldwin was one of the great writers of the last century. In works that have become part of the American canon—Go Tell It on a Mountain, Giovanni’s Room, Another Country, The Fire Next Time, and The Evidence of Things Not Seen—he explored issues of race and racism in America, class distinction, and sexual difference. A gay, African American writer who was born in Harlem, he found the freedom to express himself living in exile in Paris. When he returned to America to cover the Civil Rights movement, he became an activist and controversial spokesman for the movement, writing books that became bestsellers and made him a celebrity, landing him on the cover of Time. In this biography, which Library Journal called “indispensable,” David Leeming creates an intimate portrait of a complex, troubled, driven, and brilliant man. He plumbs every aspect of Baldwin’s life: his relationships with the unknown and the famous, including painter Beauford Delaney, Richard Wright, Lorraine Hansberry, Marlon Brando, Harry Belafonte, Lena Horne, and childhood friend Richard Avedon; his expatriate years in France and Turkey; his gift for compassion and love; the public pressures that overwhelmed his quest for happiness, and his passionate battle for black identity, racial justice, and to “end the racial nightmare and achieve our country.” Skyhorse Publishing, along with our Arcade, Good Books, Sports Publishing, and Yucca imprints, is proud to publish a broad range of biographies, autobiographies, and memoirs. Our list includes biographies on well-known historical figures like Benjamin Franklin, Nelson Mandela, and Alexander Graham Bell, as well as villains from history, such as Heinrich Himmler, John Wayne Gacy, and O. J. Simpson. We have also published survivor stories of World War II, memoirs about overcoming adversity, first-hand tales of adventure, and much more. While not every title we publish becomes a New York Times bestseller or a national bestseller, we are committed to books on subjects that are sometimes overlooked and to authors whose work might not otherwise find a home",
     bookImage: "http://books.google.com/books/content?id=pjxRnwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-    featured: true,
+    featured: false,
     price: 12.22,
   },
   {
@@ -221,6 +221,15 @@ const bookSeeds = [
     bookImage: "http://books.google.com/books/content?id=INhsEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
     featured: false,
     price: 9.99,
+  },
+  {
+    title: "The Last Wish",
+    stock: 4,
+    category: "Fiction",
+    description: "Geralt de Riv, a witcher, uses his vast sorcerous powers to hunt down the monsters that threaten the world, but he soon discovers that not every monstrous-looking creature is evil, and not everything beautiful is good.",
+    bookImage: "http://books.google.com/books/content?id=PQ3joQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+    featured: false,
+    price: 11.99,
   }
   //24
 ]
