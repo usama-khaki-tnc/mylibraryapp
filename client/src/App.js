@@ -1,26 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom"; 
-import Header from './components/Header';
-import Home from './pages/Home';
-import Login from './pages/Login'
-import Register from './pages/Register'
-import CreateBook from './pages/CreateBook';
+import { userLoggedIn } from '@apis/auth/authSlice';
+import { addCartData } from '@apis/cart/cartSlice';
+import ScrollToTop from '@components/ScrollToTop/ScrollToTop';
+import AppRoutes from '@routes/routes';
+import { useDispatch } from 'react-redux';
+import { Toaster } from 'react-hot-toast';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+  const localAuth = localStorage?.getItem('auth');
+
+  const cartData = localStorage?.getItem('cart');
+
+  if (cartData) {
+    const cart = JSON.parse(cartData);
+    if (cart?.totalQty) {
+      dispatch(addCartData(cart));
+    }
+  }
+
+  if (localAuth) {
+    const auth = JSON.parse(localAuth);
+    if (auth?.accessToken && auth?.user) {
+      dispatch(userLoggedIn({ accessToken: auth.accessToken, user: auth.user }));
+    }
+  }
+
   return (
-    <div className="App">
-      <Header/>
-      <Router>
-          <Routes>
-            <Route path= "/" element = { <Home/> }> </Route>
-            <Route path= "/login" element = { <Login/> }> </Route>
-            <Route path= "/register" element = { <Register/> }> </Route>
-            <Route path= "/createBook" element = { <CreateBook/> }> </Route>
-          </Routes>
-        </Router>
+    <div>
+      <ScrollToTop>
+        <AppRoutes />
+      </ScrollToTop>
+      <Toaster />
     </div>
   );
-}
+};
 
 export default App;

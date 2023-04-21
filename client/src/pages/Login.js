@@ -35,7 +35,7 @@ export default function Login() {
 
   return (
     <div className="body-container d-flex flex-column justify-content-center">
-      <h2 class="display-4 mt-3 mb-5 text-center">Login</h2>
+      <h2 className="display-4 mt-3 mb-5 text-center">Login</h2>
       <div className="auth-container d-flex flex-column container-sm">
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger' className="alert-button">
           Password or email is incorrect! Please try again.
@@ -44,7 +44,6 @@ export default function Login() {
           <div className="mb-3">
             <label htmlFor="email" className="form-label">Email address</label>
             <input onChange={handleChange} name="email" type="email" className="form-control" id="email" aria-describedby="emailHelp" value={formState.email} />
-            <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
           </div>
           <div className="mb-3">
             <label htmlFor="password" className="form-label">Password</label>
@@ -55,8 +54,8 @@ export default function Login() {
             <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
           </div>
           <button type="submit" className="btn btn-primary">Login</button>
-          <div className="mt-2">
-            <a href="/register">Sign up instead</a>
+          <div className="my-3">
+            <span>Don't have an account? </span><a href="/register">Sign up.</a>
           </div>
         </form>
       

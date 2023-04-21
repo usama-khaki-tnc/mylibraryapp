@@ -13,11 +13,11 @@ export default function CreateBook() {
     e.preventDefault();
     try {
         const response = await api.createBook({
-        title: formState.title, author: formState.author, isbn: formState.isbn, genre: formState.genre, image: formState.image,
+        title: formState.title, author: formState.author, isbn: formState.isbn, genre: formState.genre, description: formState.description,image: formState.image,
         publishedDate: formState.publishedDate, price: formState.price
       });
-      setFormState({title: '', author: '', isbn: '', genre: '', image: '', publishedDate: '', price: '' });
-      navigate('/browse');
+      setFormState({title: '', author: '', isbn: '', genre: '', description: '', image: '', publishedDate: '', price: '' });
+      navigate('/catalog');
     } catch (e) {
       console.error(e);
     }
@@ -51,6 +51,10 @@ export default function CreateBook() {
           <div className="mb-3">
             <label htmlFor="genre" className="form-label">Genre: </label>
             <input onChange={handleChange} name="genre" className="form-control" id="genre" value={formState.genre} type="text" />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="description" className="form-label">Description: </label>
+            <input onChange={handleChange} name="description" className="form-control" id="description" value={formState.description} type="text" />
           </div>
           <div className="mb-3">
             <label htmlFor="image" className="form-label">Image: </label>

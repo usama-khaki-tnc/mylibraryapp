@@ -1,19 +1,26 @@
-const express = require('express')
+const router = require("express").Router();
+const {
+  getAllBooksController,
+  createNewBookController,
+  updateBookController,
+  deleteBookController,
+  getBookController,
+} = require("../controllers/bookController");
+const checkAdminAuth = require("../middlewares/adminAuthMiddleware");
 
-const { getAllBooks,
-  getBookById,
-  getBookSearch,
-  editBookByID,
-  deleteBook,
-  addBook } = require('../controllers/bookController');
+// get all books
+router.get("/", getAllBooksController);
 
-const router = express.Router()
+// get all books
+router.get("/:id", getBookController);
 
-router.get('/', getAllBooks)
-router.get('/:id', getBookById)
-router.get('/search', getBookSearch)
-router.put('/:id', editBookByID)
-router.delete('/:id', deleteBook)
-router.post('/', addBook)
+// create a new book
+router.post("/", checkAdminAuth, createNewBookController);
 
-module.exports = router
+// udpate the book
+router.patch("/:id", checkAdminAuth, updateBookController);
+
+// delete the book
+router.delete("/:id", checkAdminAuth, deleteBookController);
+
+module.exports = router;
