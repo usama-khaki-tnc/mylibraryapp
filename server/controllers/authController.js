@@ -40,7 +40,7 @@ const registerController = async (req, res) => {
 
 				await newUser.save();
 
-				await sendMail("itzstaz@hotmail.com");
+				await sendMail(email);
 
 				res.status(201).json(newUser);
 			});
