@@ -214,6 +214,15 @@ const bookSeeds = [
     price: 10.99,
   },
   {
+    title: "Master of your thinking",
+    stock: 8,
+    category: "Fiction",
+    description: "A portrait of the Jazz Age in all of its decadence and excess, The Great Gatsby captured the spirit of the author's generation and earned itself a permanent place in American mythology.",
+    bookImage: "http://books.google.com/books/content?id=INhsEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+    featured: false,
+    price: 19.99,
+  },
+  {
     title: "The Great Gatsby",
     stock: 8,
     category: "Fiction",
