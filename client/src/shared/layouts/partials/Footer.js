@@ -22,10 +22,8 @@ const Footer = () => {
                 </div>
                 <div className="twitter-text">
                   <p>
-                    Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium
-                    lectorum. Mirum notare quam
+                    We have just published our website, MyLibrary! Visit us to buy books to read for your enjoyment or to give as a gift. You can find us over <a href="#">here!</a>
                   </p>
-                  <a href="#">koparion</a>
                 </div>
               </div>
             </div>

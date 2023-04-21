@@ -16,9 +16,9 @@ const Register = () => {
               <div className="login-title text-center mb-30">
                 <h2>Sign Up</h2>
                 <p>
-                  doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
+                  Register an account with MyLibrary
                   <br />
-                  inventore veritatis et quasi architecto beat
+                  to find the perfect books for you today!
                 </p>
               </div>
             </div>

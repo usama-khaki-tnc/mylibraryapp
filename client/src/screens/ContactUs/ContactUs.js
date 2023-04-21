@@ -24,12 +24,12 @@ const ContactUs = () => {
                     <li>
                       <i className="fa fa-envelope" />
                       <span>Phone: </span>
-                      (800) 0123 4567 890
+                      416-555-0160
                     </li>
                     <li>
                       <i className="fa fa-mobile" />
                       <span>Email: </span>
-                      <a href="#">demo@example.com</a>
+                      <a href="#">Contact@MyLibrary.com</a>
                     </li>
                   </ul>
                 </div>
